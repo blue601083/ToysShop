@@ -28,7 +28,7 @@ class AdminController extends Controller
 
         $admin = DB::table('admins')->where('account', $account)->first();
 
-        if ($admin->account == $account && $admin->password == $password) {
+        if ($admin && $admin->account == $account && $admin->password == $password) {
             // 登入成功，儲存 session
             session(['Id' => $admin->Id, 'name' => $admin->name]);
 

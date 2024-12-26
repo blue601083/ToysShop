@@ -2723,7 +2723,7 @@ textarea {
 
 .page {
 	overflow: hidden;
-	background-color: #fff;
+	background-color: #262525;
 }
 
 a:hover, a:focus {
@@ -3819,10 +3819,6 @@ address {
 .bg-darkest {
 	background: #2a2a2d;
 	fill: #2a2a2d;
-}
-
-.bg-lighter {
-	background-color: #f2f3f8;
 }
 
 .bg-lighter:not([style*="background-"]) + .bg-lighter:not([style*="background-"]) {
@@ -15856,7 +15852,7 @@ ul ul, ul ol, ol ul, ol ol {
  * @licesne      MIT License
  */
 .swiper-container {
-	margin: 0 auto;
+	margin-top: 95px;
 	position: relative;
 	overflow: hidden;
 	/* Fix of Webkit flickering */

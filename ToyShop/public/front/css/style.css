@@ -4002,6 +4002,15 @@ address {
 	}
 }
 
+#backend-login {
+	color: #28a745; /* 文字顏色設為綠色 */
+	text-decoration: none; /* 移除連結的下劃線 */
+}
+  
+#backend-login:hover {
+	color: #000000; /* 懸停時的顏色變深 */
+	text-decoration: none; /* 懸停時移除下劃線 */
+}
 .pricing-table {
 	max-width: 320px;
 	margin-left: auto;

@@ -34,9 +34,7 @@ class ManagerController extends Controller
             'account' => $req->account,
             'password' => Hash::make($req->password)
         ]);
-
-        Session::flash("message", "新增成功!");
-        return redirect("/admin/manager/list");
+        return redirect("/admin/manager/list")->with("message", "新增成功!");
     }
 
     public function edit(Request $req)

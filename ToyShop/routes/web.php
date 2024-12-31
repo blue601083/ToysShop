@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminNoticeController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ManagerController;
 use App\Http\Controllers\Front\IndexController;
@@ -25,4 +26,14 @@ Route::group(["prefix" => "admin/manager"], function(){
     Route::get("edit/{Id}", [ManagerController::class,"edit"]);
     Route::post("update", [ManagerController::class,"update"]);
     Route::post("delete", [ManagerController::class,"delete"]);
+});
+
+// 後台管理系統-公告管理 AdminNoticeController
+Route::group(["prefix" => "admin/notice"], function(){
+    Route::get("list", [AdminNoticeController::class,"list"]);
+    Route::get("add", [AdminNoticeController::class,"add"]);
+    Route::post("insert", [AdminNoticeController::class,"insert"]);
+    Route::get("edit/{Id}", [AdminNoticeController::class,"edit"]);
+    Route::post("update", [AdminNoticeController::class,"update"]);
+    Route::post("delete", [AdminNoticeController::class,"delete"]);
 });

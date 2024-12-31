@@ -13,7 +13,7 @@
             </a> 
         </li>
         <li class="nav-item"> 
-            <a href="/admin/product/list" class="nav-link d-flex align-items-center"> 
+            <a href="/admin/notice/list" class="nav-link d-flex align-items-center"> 
                 <i class="nav-icon bi bi-megaphone-fill fs-4 me-2"></i>
                 <p class="mb-0">公告管理系統</p>
             </a> 

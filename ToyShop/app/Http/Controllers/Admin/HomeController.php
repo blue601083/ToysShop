@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Manager;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Request as FacadesRequest;
 
-class AdminController extends Controller
+class HomeController extends Controller
 {
     public function home()
     {
@@ -20,15 +21,20 @@ class AdminController extends Controller
         return view("admin.login");
     }
 
+    public function logout()
+    {
+        return view("admin.login");
+    }
+
     public function postLogin(Request $request)
     {
         // 驗證帳號密碼
         $account = $request->input('account');
         $password = $request->input('password');
 
-        $admin = DB::table('admins')->where('account', $account)->first();
+        $admin = Manager::where('account', $account)->first();
 
-        if ($admin && $admin->account == $account && $admin->password == $password) {
+        if ($admin && Hash::check($password, $admin->password)) {
             // 登入成功，儲存 session
             session(['Id' => $admin->Id, 'name' => $admin->name]);
 
@@ -36,7 +42,7 @@ class AdminController extends Controller
             return redirect()->route('admin.home');
         } else {
             // 登入失敗
-            return back()->withErrors(['admin.login' => '帳號或密碼錯誤']);
+            return back()->withInput()->withErrors(['error' => '帳號或密碼錯誤']);
         }
     }
 
@@ -52,7 +58,7 @@ class AdminController extends Controller
         $newPassword = $req->input('newPassword');
         $reNewPassword = $req->input('reNewPassword');
 
-        $data = DB::table('admins')->where('account', $account)->first();
+        $data = Manager::where('account', $account)->first();
 
         if ($data == null) {
             return back()->withErrors(['admin.forget' => '無此帳號，請重新輸入']);
@@ -63,7 +69,7 @@ class AdminController extends Controller
         }
 
         // 更新密碼
-        DB::table('admins')->where('account', $account)->update([
+        DB::table('managers')->where('account', $account)->update([
             'password' => Hash::make($newPassword), // 使用 Hash 加密密碼
         ]);
 

@@ -17,7 +17,7 @@
             </div>
             <header>設定密碼</header>
             <hr>
-            <form action="{{ route('admin.forget') }}" method="POST">
+            <form action="/admin/postForget" method="POST">
                 @csrf <!-- CSRF 防護 -->
                 <div class="form-box">
                     <div class="input-container">
@@ -50,7 +50,7 @@
 
                     <div>
                         <input type="submit" id="submit" value="確定" class="forgetbnt">
-                        <input type="reset" id="reset" value="重置" class="forgetbnt">
+                        <input type="reset" id="reset" value="返回" class="forgetbnt" onclick="history.back();">
                     </div>
                 </div>
             </form>

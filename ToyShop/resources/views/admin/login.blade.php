@@ -7,6 +7,8 @@
     <title>Login</title>
     <link rel="stylesheet" href="/admin/css/loginstyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.3/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.3/dist/sweetalert2.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -18,7 +20,7 @@
             <header>Login</header>
             <hr>
             <span class="title">賣家後臺系統 歡迎您~</span>
-            <form action="{{ route('admin.postLogin') }}" method="POST">
+            <form action="/admin/postLogin" method="POST">
                 @csrf <!-- CSRF 防護 -->
                 <div class="form-box">
                     <div class="input-container">
@@ -32,9 +34,9 @@
                         <i class="fa fa-eye toggle icon"></i>
                     </div>
 
-                    @if($errors->has('admin.login'))
+                    @if($errors->has('error'))
                     <div class="error">
-                        {{ $errors->first('admin.login') }}
+                        {{ $errors->first('error') }}
                     </div>
                     @endif
 
@@ -63,7 +65,6 @@
     </script>
 
     @if (session('success'))
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         Swal.fire({
             title: '成功！',

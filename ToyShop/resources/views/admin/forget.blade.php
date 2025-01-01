@@ -7,6 +7,7 @@
     <title>ForgetPassword</title>
     <link rel="stylesheet" href="/admin/css/loginstyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
 <body>
@@ -50,8 +51,11 @@
 
                     <div>
                         <input type="submit" id="submit" value="確定" class="forgetbnt">
-                        <input type="reset" id="reset" value="返回" class="forgetbnt" onclick="history.back();">
+                        <input type="reset" id="reset" value="重置" class="forgetbnt">
                     </div>
+                </div>
+                <div class="remember">
+                    <span><a href="{{ route('admin.login') }}"><i class="bi bi-door-open-fill"></i>返回登入頁</a></span>
                 </div>
             </form>
         </div>

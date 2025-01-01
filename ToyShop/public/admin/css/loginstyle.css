@@ -106,8 +106,9 @@ img {
     color: #2B547E;
 }
 
-.remember span {
-    margin-left: 235px;
+.remember {
+    font-size: 12pt;
+    text-align: center;
 }
 
 .remember span a {

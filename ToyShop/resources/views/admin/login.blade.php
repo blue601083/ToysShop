@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.3/dist/sweetalert2.all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.3/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
 <body>
@@ -44,13 +45,14 @@
                         <input type="submit" id="submit" value="Login" class="button btn btn-primary">
                     </div>
                 </div>
-
                 <div class="remember">
-                    <span><a href="{{ route('admin.forget') }}">Forgot password</a></span>
+                    <span><a href="{{ route('admin.forget') }}"><i class="bi bi-bell-fill"></i>忘記密碼</a></span> &nbsp; || &nbsp;
+                    <span><a href="{{ route('front.index') }}"><i class="bi bi-door-open-fill"></i>返回官網</a></span>
                 </div>
             </form>
         </div>
     </div>
+
     <script>
         const toggle = document.querySelector(".toggle"),
             input = document.querySelector(".password");

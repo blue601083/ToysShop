@@ -4,17 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Manager extends Model
+class Category extends Model
 {
     public $timestamps = false;
-    protected $table = "managers";
+    protected $table = "product_category";
     protected $primaryKey = "Id";
     protected $fillable = [
         "Id",
         "name",
-        "account",
-        "password",
         "createTime",
         "updateTime",
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'category_Id', 'Id');
+    }
 }

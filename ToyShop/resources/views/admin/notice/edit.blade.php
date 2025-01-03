@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6">
-                <h3 class="mb-0"><i class="bi bi-person-plus"></i> @yield("title")</h3>
+                <h3 class="mb-0"><i class="bi bi-pencil-square ms-2"></i> @yield("title")</h3>
             </div>
             <div class="col-sm-6 text-end">
                 <a href="/admin/notice/list" class="btn btn-outline-secondary">
@@ -22,7 +22,7 @@
             <div class="col-md-6 col-lg-5"> <!-- 控制表單寬度 -->
                 <div class="card shadow-sm mt-4">
                     <div class="card-body">
-                        <h1 class="card-title text-center mb-4 text-primary"><i class="bi bi-file-earmark-plus-fill"></i> 填寫修改資料</h1><br><br>
+                        <h1 class="card-title text-center mb-4 text-primary"><i class="bi bi bi-pencil-fill"></i> 填寫修改資料</h1><br><br>
                         <form action="/admin/notice/update" method="POST" enctype="multipart/form-data">
                             @csrf <!-- Laravel 防止跨站請求偽造 -->
                             <input type="hidden" name="Id" value="{{ $notice->Id }}">

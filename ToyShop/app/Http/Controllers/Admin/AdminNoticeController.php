@@ -10,7 +10,7 @@ class AdminNoticeController extends Controller
 {
     public function list()
     {
-        $list = Notice::get();
+        $list = Notice::paginate(5);
         return view("admin.notice.list", compact("list"));
     }
 

@@ -21,9 +21,10 @@ class HomeController extends Controller
         return view("admin.login");
     }
 
-    public function logout()
+    public function logout(Request $req)
     {
-        return view("admin.login");
+        $req->session()->flush();
+        return redirect()->route('admin.login');
     }
 
     public function postLogin(Request $request)
@@ -36,7 +37,7 @@ class HomeController extends Controller
 
         if ($admin && Hash::check($password, $admin->password)) {
             // 登入成功，儲存 session
-            session(['Id' => $admin->Id, 'name' => $admin->name]);
+            session(['Id' => $admin->Id, 'name' => $admin->name, 'account' => $admin->account]);
 
             // 登入成功後，重定向到 admin.home
             return redirect()->route('admin.home');

@@ -6,13 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Manager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
 
 class ManagerController extends Controller
 {
     public function list()
     {
-        $list = Manager::get();
+        $list = Manager::paginate(2);
         return view("admin.manager.list", compact("list"));
     }
 

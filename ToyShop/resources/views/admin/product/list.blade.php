@@ -1,5 +1,5 @@
 @extends("admin.layout")
-@section("title", "公告管理列表")
+@section("title", "商品管理列表")
 @section("content")
 <link rel="stylesheet" href="/admin/css/lightbox.min.css">
 <script src="/admin/js/lightbox.min.js"></script>
@@ -19,7 +19,7 @@
         <div class="row justify-content-center">
             <div class="col-md-11"> <!-- 調整表格容器的寬度 -->
                 <div class="d-flex justify-content-end mb-3">
-                    <a href="/admin/notice/add" class="btn btn-primary">
+                    <a href="/admin/product/add" class="btn btn-primary">
                         <i class="bi bi-person-fill-add"></i> 新增
                     </a>
                 </div>
@@ -30,12 +30,16 @@
                     <table class="table table-hover table-striped table-bordered"> <!-- 縮小字體大小 -->
                         <thead class="table-dark text-center">
                             <tr>
-                                <th class="col-1">編號</th> <!-- 調整欄寬 -->
-                                <th class="col-1">主標題</th>
-                                <th class="col-2">副標題</th>
-                                <th class="col-2">圖片</th>
-                                <th class="col-3">公告內容</th>
-                                <th class="col-1">建立時間</th>
+                                <th>編號</th> <!-- 調整欄寬 -->
+                                <th>圖片</th>
+                                <th>名稱</th>
+                                <th>類別</th>
+                                <th>內容</th>
+                                <th>點數</th>
+                                <th>總數</th>
+                                <th>庫存</th>
+                                <th>出貨天數</th>
+                                <th>上架時間</th>
                                 <th class="col-2">操作</th>
                             </tr>
                         </thead>
@@ -43,22 +47,45 @@
                             @forelse($list as $data)
                             <tr class="text-center">
                                 <td>{{ $data->Id }}</td>
-                                <td>{{ $data->title }}</td>
-                                <td>{{ $data->subtitle }}</td>
                                 <td>
                                     @if(!empty($data->photo))
-                                    <a href="/admin/images/notice/{{ $data->photo }}" data-lightbox="image" data-title="{{ $data->title }}">
-                                        <img src="/admin/images/notice/{{ $data->photo }}" width="150">
+                                    <a href="/admin/images/{{ $data->photo }}" data-lightbox="image" data-title="{{ $data->name }}">
+                                        <img src="/admin/images/{{ $data->photo }}" width="75">
                                     </a>
                                     @endif
                                 </td>
-                                <td class="cell-fixed-height">{{ $data->content }}</td>
+                                <td>{{ $data->name }}</td>
+                                <td>{{ $data->category->name ?? '無分類' }}</td>
+                                <td>
+                                    <button class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#contentModal-{{ $data->Id }}">
+                                        {{ Str::limit($data->content, 50, '....(了解更多)') }}
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="contentModal-{{ $data->Id }}" tabindex="-1" aria-labelledby="contentModalLabel-{{ $data->Id }}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="contentModalLabel-{{ $data->Id }}">內容詳情</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    {{ $data->content }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td>{{ $data->point }}</td>
+                                <td>{{ $data->totalCount }}</td>
+                                <td>{{ $data->stock }}</td>
+                                <td>{{ $data->shippingDays }}</td>
                                 <td>{{ $data->createTime }}</td>
                                 <td>
-                                    <a href="/admin/notice/edit/{{ $data->Id }}" class="btn btn-sm btn-success">
+                                    <a href="/admin/product/edit/{{ $data->Id }}" class="btn btn-sm btn-success">
                                         <i class="bi bi-pencil-square"></i> 修改
                                     </a>&nbsp;&nbsp;&nbsp;
-                                    <form action="/admin/notice/delete" method="POST" id="delete-form-{{ $data->Id }}" style="display: inline;">
+                                    <form action="/admin/product/delete" method="POST" id="delete-form-{{ $data->Id }}" style="display: inline;">
                                         @csrf
                                         <input type="hidden" name="Id" value="{{ $data->Id }}">
                                         <button type="button" class="btn btn-sm btn-danger" onclick="doDelete('{{ $data->Id }}')">
